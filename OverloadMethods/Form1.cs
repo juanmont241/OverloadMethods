@@ -21,9 +21,49 @@ namespace OverloadMethods
 
         private void areaButton_Click(object sender, EventArgs e)
         {
+            double result;
+            try
+            {
+                if (value2Input.Text == "")
+                {
+                    double value1 = Convert.ToDouble(value1Input.Text);
+                    result = Area(value1);
+                }
 
+                else
+                {
+                    double value1 = Convert.ToDouble(value1Input.Text);
+                    double value2 = Convert.ToDouble(value2Input.Text);
+                    result = Area(value1, value2);
+                }
+
+                areaOutput.Text = $"{result.ToString(".##")} units squared";
+            }
+
+            catch
+            {
+                areaOutput.Text = "ERROR";
+            }
         }
 
+        /// <summary>
+        /// This method will calaculate the area of a circle
+        /// </summary>
+        /// <param name="radius"> value to used</param>
+        /// <returns></returns>
+
+        public double Area(double radius)
+        {
+            //area = pi * r^2
+            double area = radius * radius * 3.14;
+            return area;
+        }
+
+        public double Area(double length, double width)
+        {
+            double area = length * width;
+            return area;
+        }
 
     }
 }
