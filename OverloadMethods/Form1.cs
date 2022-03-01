@@ -16,54 +16,83 @@ namespace OverloadMethods
         {
             InitializeComponent();
 
-            instructionLabel.Text = "Enter: \n\n1 value for a circle\n2 values for a rectangle";
+            titleLabel.Text = "Perimeter Calculator";
+            instructionLabel.Text = "Enter: \n\n1 value for a circle\n2 values for a rectangle\n3 values for a traingle";
         }
 
-        private void areaButton_Click(object sender, EventArgs e)
+        private void perimeterButton_Click(object sender, EventArgs e)
         {
             double result;
             try
             {
-                if (value2Input.Text == "")
+                if (value2Input.Text == "" && value3Input.Text == "")
                 {
                     double value1 = Convert.ToDouble(value1Input.Text);
-                    result = Area(value1);
+                    result = Perimeter(value1);
+                }
+
+                else if (value3Input.Text == "")
+                {
+                    double value1 = Convert.ToDouble(value1Input.Text);
+                    double value2 = Convert.ToDouble(value2Input.Text);
+                    result = Perimeter(value1, value2);
                 }
 
                 else
                 {
                     double value1 = Convert.ToDouble(value1Input.Text);
                     double value2 = Convert.ToDouble(value2Input.Text);
-                    result = Area(value1, value2);
+                    double value3 = Convert.ToDouble(value3Input.Text);
+                    result = Perimeter(value1, value2, value3);
+                   
                 }
 
-                areaOutput.Text = $"{result.ToString(".##")} units squared";
+                perimeterOutput.Text = $"The Perimeter is {result.ToString(".##")} ";
             }
 
             catch
             {
-                areaOutput.Text = "ERROR";
+                perimeterOutput.Text = "ERROR";
             }
         }
 
         /// <summary>
-        /// This method will calaculate the area of a circle
+        /// This method will measure the perimeter for the circle
         /// </summary>
-        /// <param name="radius"> value to used</param>
+        /// <param name="diameter"> This measures the diameter and pi</param>
         /// <returns></returns>
 
-        public double Area(double radius)
+        public double Perimeter(double diameter)
         {
-            //area = pi * r^2
-            double area = radius * radius * 3.14;
-            return area;
+            double Perimeter = diameter * 3.14;
+            return Perimeter;
         }
 
-        public double Area(double length, double width)
+        /// <summary>
+        /// This method will measure the perimeter for the rectangle
+        /// </summary>
+        /// <param name="length">Measures the length times 2</param>
+        /// <param name="width">Measures the width times 2</param>
+        /// <returns></returns>
+       
+        public double Perimeter(double length, double width)
         {
-            double area = length * width;
-            return area;
+            double Perimeter = (2 * length) + (2* width);
+            return Perimeter;
         }
 
+        /// <summary>
+        /// This method will measure the perimeter for the triangle
+        /// </summary>
+        /// <param name="a">Adds to the sum (a, b, c)</param>
+        /// <param name="b">Adds to the sum (a, b, c)</param>
+        /// <param name="c">Adds to the sum (a, b, c)</param>
+        /// <returns></returns>
+       
+        public double Perimeter(double a, double b, double c)
+        {
+            double Perimeter = a + b + c;
+            return Perimeter;
+        }
     }
 }
